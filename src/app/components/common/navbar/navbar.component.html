@@ -14,10 +14,21 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active px-4" aria-current="page" href="#">Feed</a>
+          <a
+            class="nav-link px-4"
+            [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLink="/feed"
+            >Feed</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link px-4" routerLink="/test">My Posts</a>
+          <a
+            class="nav-link px-4"
+            [routerLinkActive]="['active']"
+            routerLink="/my-posts"
+            >My Posts</a
+          >
         </li>
         <li class="nav-item">
           <a class="nav-link px-4" href="#">Notifications</a>
@@ -29,7 +40,7 @@
       <img src="../../../../assets/images/cat-logo.png" height="50" alt="" />
     </a>
 
-    <div class="nav navbar-header navbar-profile pull-right me-4">
+    <div *ngIf="user" class="nav navbar-header navbar-profile pull-right me-4">
       <div class="ml-4 dropdown d-inline">
         <a
           class="btn dropdown-toggle"
@@ -39,14 +50,14 @@
           aria-expanded="false"
         >
           <figure class="avatar avatar-nav">
-            <img src="#" class="rounded-circle" alt="" />
+            <img [src]="user.photoURL" class="rounded-circle" alt="" />
           </figure>
-          <span>Safnaj</span>
+          <span>{{ user.displayName }}</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="dropDownMenuButton">
           <a class="dropdown-item">Profile</a>
           <a class="dropdown-item">Settings</a>
-          <a class="dropdown-item text-danger">Logout</a>
+          <a class="dropdown-item text-danger" (click)="logout()">Logout</a>
         </div>
       </div>
     </div>
